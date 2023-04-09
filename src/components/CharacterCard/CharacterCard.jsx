@@ -47,9 +47,6 @@ const CharacterAction = styled.div`
   }
 `;
 
-
-
-
 const CharacterCard = ({ id, image, name, status, species, gender, origin }) => {
 
   const navigate = useNavigate();
