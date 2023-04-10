@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchCharacters, fetchLocations } from "../../reducers/ramSlice";
+import {
+  fetchCharacters,
+  fetchLocations,
+  fetchEpisodes,
+} from "../../reducers/ramSlice";
 import CharacterCard from "../../components/CharacterCard/CharacterCard";
 import LocationCard from "../../components/LocationCard/LocationCard";
+import EpisodeCard from "../../components/EpisodeCard/EpisodeCard";
 
 const HomeContainer = styled.div`
   padding: 1rem 2rem;
@@ -52,14 +57,32 @@ const LocationLayout = styled.div`
   }
 `;
 
+const EpisodeLayout = styled.div`
+  display: grid;
+  width: 100%;
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+`;
 const Home = () => {
   const dispatch = useDispatch();
   const characters = useSelector((state) => state.ram.characters);
   const locations = useSelector((state) => state.ram.locations);
+  const episodes = useSelector((state) => state.ram.episodes);
 
   useEffect(() => {
     dispatch(fetchCharacters());
     dispatch(fetchLocations());
+    dispatch(fetchEpisodes());
   }, [dispatch]);
 
   return (
@@ -89,7 +112,20 @@ const Home = () => {
             ))}
       </LocationLayout>
       <TitleSection>Episodes</TitleSection>
-      {/* write some component to map here, 6 card */}
+      <EpisodeLayout>
+        {episodes.length > 0 &&
+          episodes
+            .slice(0, 6)
+            .map((episode) => (
+              <EpisodeCard
+                key={episode.id}
+                id={episode.id}
+                name={episode.name}
+                airDate={episode.air_date}
+                episode={episode.episode}
+              />
+            ))}
+      </EpisodeLayout>
     </HomeContainer>
   );
 };
