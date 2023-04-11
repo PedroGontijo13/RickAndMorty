@@ -10,7 +10,7 @@ const CharacterDetailContainer = styled.div`
 
 const Character = () => {
   const { id } = useParams(); // retrieve character id from URL parameter
-  const [character, setCharacter] = useState(null); // state to hold character data
+  const [character, setCharacter] = useState(null);
 
   // fetch character data from API using character id
   useEffect(() => {
