@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const CardContainer = styled.div`
@@ -29,8 +30,13 @@ const CardText = styled.p`
 `;
 
 const EpisodeCard = ({ id, name, airDate, episode }) => {
+  const navigate = useNavigate()
+
+  const handleRoute = (id) => {
+    navigate(`/episode/${id}`);
+  }
   return (
-    <CardContainer>
+    <CardContainer onClick={() => handleRoute(id)}>
       <CardContent>
         <CardTitle>{name}</CardTitle>
         <CardText>Air Date: {airDate}</CardText>

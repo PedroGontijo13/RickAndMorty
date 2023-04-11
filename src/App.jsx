@@ -7,6 +7,7 @@ import Register from './pages/Register/Register';
 import Profile from './pages/Profile/Profile';
 import Character from './pages/Character/Character';
 import Locations from './pages/Locations/Locations';
+import Episode from './pages/Episodes/Episode';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/character/:id" element={<Character />} />
           <Route path="/location/:id" element={<Locations />} />
+          <Route path="/episode/:id" element={<Episode />} />
         </Routes>
       </BrowserRouter>
     </>
