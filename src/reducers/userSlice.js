@@ -39,7 +39,7 @@ export const login = (userData) => async dispatch => {
     try {
         dispatch(setLoading(true));
         const response = await axios.post(import.meta.env.VITE_APP_URL + "/api/user/login", userData);
-        //console.log(response);
+        axios.defaults.headers.common["Authorization"] = response.data.token;
         dispatch(setUser(response.data));
     } catch (error) {
         dispatch(setError(error.response.data.message));
@@ -63,8 +63,22 @@ export const register = (userData) => async dispatch => {
 export const logout = () => async dispatch => {
     try {
         dispatch(resetState());
+        delete axios.defaults.headers.common["Authorization"];
     } catch (error) {
         console.log(error);
+    }
+};
+
+export const getMe = () => async dispatch => {
+    try {
+        dispatch(setLoading(true));
+        const response = await axios.get(import.meta.env.VITE_APP_URL + "/api/user/");
+        dispatch(setUser(response.data));
+        console.log(response.data);
+    } catch (error) {
+        dispatch(setError(error.response.data.error));
+    } finally {
+        dispatch(setLoading(false));
     }
 };
 

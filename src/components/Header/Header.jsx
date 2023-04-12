@@ -8,6 +8,8 @@ const HeaderContainer = styled.div`
     display: flex;
     align-items: center;
     padding: 1rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
     h1{
         margin-right: auto;
         cursor: pointer;
