@@ -36,10 +36,42 @@ const TitleSection = styled.h1`
   font-size: 3rem;
   border-bottom: 1px solid #fff;
   padding-bottom: 1rem;
-
   margin: 1.4rem 0;
 `;
 
+const LocationLayout = styled.div`
+  display: grid;
+  width: 100%;
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+`;
+
+const EpisodeLayout = styled.div`
+  display: grid;
+  width: 100%;
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+`;
 const Home = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.ram.isLoading);
